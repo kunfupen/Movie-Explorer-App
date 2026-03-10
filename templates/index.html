@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Explorer</h1>
+        <p class="subtitle">Discover movies and watch trailers</p>
+        <form id="search-form" action="#" method="GET" novalidate>
+            <div class="search-wrapper">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    name="query" 
+                    placeholder="Search for a movie (e.g., Avatar, Inception, Avengers)" 
+                >
+                <button type="submit" id="search-button">Search</button>    
+            </div>
+            <p class="error-message" id="error-message" hidden>Please enter a search term</p>
+        </form>
+        <h2 id ="results-heading" class="results-heading">Search Results</h2>
+        <div id="results" class="results"></div>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>

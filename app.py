@@ -30,19 +30,71 @@ def search():
 @app.route('/api/movie/<int:movie_id>')
 def movie_details(movie_id):
     detail_resp = requests.get(f'{TMDB_BASE}/movie/{movie_id}', params={
-        'append_to_response': 'credits', 'api_key': TMDB_API_KEY})
+        'append_to_response': 'credits', 'api_key': TMDB_API_KEY}, timeout=15)
     data = detail_resp.json()
 
     title = data.get('title', '')
-    yt_resp = requests.get(YOUTUBE_BASE, params={
-        'part': 'snippet', 'q': f'{title} trailer',
-        'type': 'video',
-        'maxResults': 1,
-        'key': YOUTUBE_API_KEY})
-    yt_data = yt_resp.json()
-    items = yt_data.get('items', [])
-    video_id = items[0]['id']['videoId'] if items else None
+    video_id = None
+
+    videos = []
+    try:
+        videos_resp = requests.get(
+            f'{TMDB_BASE}/movie/{movie_id}/videos',
+            params={'api_key': TMDB_API_KEY},
+            timeout=15
+        )
+        videos = videos_resp.json().get('results', [])
+    except requests.RequestException:
+        videos = []
+
+    youtube_videos = [
+        video for video in videos
+        if video.get('site') == 'YouTube' and video.get('key')
+    ]
+
+    official_trailers = [
+        video for video in youtube_videos
+        if video.get('type') == 'Trailer' and video.get('official')
+    ]
+    trailers = [video for video in youtube_videos if video.get('type') == 'Trailer']
+
+    if official_trailers:
+        video_id = official_trailers[0].get('key')
+    elif trailers:
+        video_id = trailers[0].get('key')
+    elif youtube_videos:
+        video_id = youtube_videos[0].get('key')
+
+    if not video_id and YOUTUBE_API_KEY and title:
+        try:
+            yt_resp = requests.get(YOUTUBE_BASE, params={
+                'part': 'snippet',
+                'q': f'{title} official trailer',
+                'type': 'video',
+                'maxResults': 1,
+                'key': YOUTUBE_API_KEY
+            }, timeout=15)
+            yt_data = yt_resp.json()
+            items = yt_data.get('items', [])
+            if items:
+                video_id = items[0].get('id', {}).get('videoId')
+            else:
+                yt_resp = requests.get(YOUTUBE_BASE, params={
+                    'part': 'snippet',
+                    'q': f'{title} trailer',
+                    'type': 'video',
+                    'maxResults': 1,
+                    'key': YOUTUBE_API_KEY
+                }, timeout=15)
+                yt_data = yt_resp.json()
+                items = yt_data.get('items', [])
+                if items:
+                    video_id = items[0].get('id', {}).get('videoId')
+        except requests.RequestException:
+            video_id = None
+
     data['trailer_video_id'] = video_id
+    data['trailer_url'] = f'https://www.youtube.com/watch?v={video_id}' if video_id else None
 
     return jsonify(data)
 

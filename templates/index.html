@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Explorer</title>
-    <link rel="stylesheet" href="static/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
@@ -20,11 +20,11 @@
                 >
                 <button type="submit" id="search-button">Search</button>    
             </div>
-            <p class="error-message" id="error-message" hidden>Please enter a search term</p>
+            <p id="error-message" class="error-message" hidden>Please enter a search term</p>
         </form>
         <h2 id ="results-heading" class="results-heading">Search Results</h2>
         <div id="results" class="results"></div>
     </div>
 
-    <script src="static/js/script.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>

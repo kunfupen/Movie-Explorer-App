@@ -1,0 +1,133 @@
+# AI-Assisted Development Log
+# Movie Explorer SPA - CSCI 571 Assignment 2
+# Student Name: Khang Thai
+# Date: 04-03-2026
+
+================================================================================
+SESSION 1: Initial Setup and Search Form With Basic Styling
+================================================================================
+
+Prompt 1:
+"Help me set up an app with a search form for movies, styled to look modern and
+centered."
+
+AI RESPONSE SUMMARY:
+- Created movie app and explained routing
+- Suggested HTML structure for the search form
+- Used CSS flexbox and gradients for modern look
+
+WHAT I LEARNED:
+- How to structure a Flask app with template and static files
+- Using flexbox and gradients for visually appealing layouts
+
+ISSUE ENCOUNTERED:
+- Search form was not centered on the page
+
+HOW I FIXED IT:
+- Applied flexbox and margin auto as suggested
+
+--------------------------------------------------------------------------------
+
+Prompt 2:
+"How do I fetch movie data from TMDB API and display results as cards?"
+
+AI SUMMARY RESPONSE:
+- Showed how to use request to Flask to call TMDB API
+- Explained how to pass results to the frontend and render with JS
+- Provided a card layout using CSS grid.
+
+WHAT I LEARNED:
+- How to to use the requests library to call external APIs in Flask
+
+--------------------------------------------------------------------------------
+
+Prompt 3:
+"How can I show a loading spinner while waiting for search results?"
+
+AI SUMMARY RESPONSE:
+- Provided CSS for a red spinner useing @keyframes
+- Suggested toggling a .loading class in JS
+
+WHAT I LEARNED:
+- How to create a custom spinner with CSS
+
+--------------------------------------------------------------------------------
+
+Prompt 4:
+"How can I highlight movie cards with a subtle red border on hover?"
+
+AI SUMMARY RESPONSE:
+- Provided CSS using rgba for a soft red border
+- Explained how to use transition for smooth effect
+
+WHAT I LEARNED:
+- Using rgba and transitions
+
+ISSUE ENCOUNTERED:
+- Border was too bold at first
+
+HOW I FIXED IT:
+- Switched rgba for a more subtle look
+
+================================================================================
+SESSION 2: Movie Cards Layout and Detail View
+================================================================================
+
+Prompt 5:
+"How do I show a detail view with movie infor and trailer when a card is 
+clicked?"
+
+AI SUMMARY RESPONSE:
+- Explained how to fetch movie details and videos from TMDB
+- Showed how to extract the Youtube trailer ID and embed with an iframe
+
+WHAT I LEARNED:
+- How to use TMDB's endpoint for trailers
+- Fallback for missing data
+
+ISSUE ENCOUNTERED:
+- Some movies did not show a trailer
+
+HOW I FIXED IT:
+- Implemented fallback to YouTube API as suggested
+
+--------------------------------------------------------------------------------
+
+Prompt 6:
+"How can I add a back button to return from the detail view to the search
+results?"
+
+AI SUMMARY RESPONSE:
+- Suggested adding a back button in the detail view
+- Explained how to store and restore previous search results in JS
+
+WHAT I LEARNED:
+- How to manage UI state for single-page navigation
+
+-------------------------------------------------------------------------------- 
+
+Prompt 7:
+"Display the error messages if the API call fails or return no results?"
+
+AI SUMMARY RESPONSE:
+- Showed how to catch fetch/request errors in JS
+- Suggested displying a styled error message in the UI
+
+WHAT I LEARNED:
+- How to handle and display errors
+
+================================================================================
+REFLECTION
+================================================================================
+
+Most useful AI assistance:
+- Debugging TMDB API integration and trailer fallback logic
+- CSS for modern UI and subtle hover effects
+- Structuring Flask routes and API endpoints
+
+What I would do differently:
+- Test API responses for edge cases earlier
+- Plan the layout and structure of the detail page before coding it
+
+Time spend: ~10 hours
+AI tool used: Claude, Codex

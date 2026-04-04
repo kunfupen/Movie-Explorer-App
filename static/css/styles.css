@@ -220,7 +220,15 @@ h1 {
     to { transform: rotate(360deg); }
 }
 
-.movie-card { cursor: pointer; }
+.movie-card { 
+    cursor: pointer;
+    transition: border 0.2s;
+    border: 2px solid transparent; 
+}
+
+.movie-card:hover {
+    border: 2px solid lightcoral;
+}
 
 .detail-view {
     grid-column: 1 / -1;

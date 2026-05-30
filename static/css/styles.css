@@ -59,7 +59,7 @@ h1 {
 }
 
 #search-input::placeholder {
-    color: rgba(180, 190, 210, 0, 0.45);
+    color: rgba(180, 190, 210, 0.45);
 }
 
 #search-input:focus {

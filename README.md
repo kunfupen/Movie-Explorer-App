@@ -27,8 +27,6 @@ Live app: https://movie-explorer-394422504297.us-central1.run.app/
 │       └── app.js
 ├── templates/
 │   └── index.html
-├── docs/
-│   └── process_log.txt
 └── README.md
 ```
 
@@ -75,7 +73,3 @@ http://localhost:8080
 docker build -t movie-explorer-app .
 docker run --env-file .env -p 8080:8080 movie-explorer-app
 ```
-
-## Development Notes
-
-The AI-assisted development log is available in [docs/process_log.txt](docs/process_log.txt).
